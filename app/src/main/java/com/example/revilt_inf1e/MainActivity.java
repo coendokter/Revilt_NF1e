@@ -2,7 +2,7 @@ package com.example.revilt_inf1e;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
 
@@ -22,6 +22,19 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent i=new Intent(MainActivity.this,
+                        SecondActivity.class);
+                //Intent is used to switch from one activity to another.
+
+                startActivity(i);
+                //invoke the SecondActivity.
+
+                finish();
+                //the current activity will get finished.
+            }
+        }, SPLASH_SCREEN_TIME_OUT);
     }
 }
