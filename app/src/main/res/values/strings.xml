@@ -2,4 +2,6 @@
     <string name="app_name">Revilt_inf1e</string>
     <string name="Instellingen">Instellingen</string>
     <string name="Overzicht">Overzicht pagina</string>
+    <string name="Koppel">Koppel filtje:</string>
+    <string name="Tafel">Aan tafel:</string>
 </resources>
