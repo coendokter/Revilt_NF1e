@@ -85,22 +85,22 @@
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent" />
 
-    <View
+    <TextView
         android:layout_width="290dp"
         android:layout_height="90dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:background="@color/colorPrimary"
         android:text="@string/Tafel"
-        android:textColor="#ffffff"
-        android:textSize="20dp"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view" />
 
-    <View
+    <TextView
         android:layout_width="290dp"
         android:layout_height="90dp"
         android:layout_marginLeft="8dp"
@@ -109,7 +109,7 @@
         android:background="@color/colorPrimary"
         android:text="@string/Koppel"
         android:textColor="#ffffff"
-        android:textSize="20dp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="parent"
