@@ -36,12 +36,15 @@ public class background extends AsyncTask <String, Void,String> {
     @Override
     protected void onPostExecute(String s) {
         dialog.setMessage(s);
-        dialog.show();
         if(s.contains("login successful"))
         {
             Intent intent_name = new Intent(this.context,SecondActivity.class);
             //intent_name.setClass(context.getApplicationContext(),);
             context.startActivity(intent_name);
+        }
+        else {
+            dialog.setMessage("Wrong username/password");
+            dialog.show();
         }
     }
     @Override
