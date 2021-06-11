@@ -28,21 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        /*new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent i=new Intent(MainActivity.this,
-                        SecondActivity.class);
-                //Intent is used to switch from one activity to another.
-
-                startActivity(i);
-                //invoke the SecondActivity.
-
-                finish();
-                //the current activity will get finished.
-            }
-        }, SPLASH_SCREEN_TIME_OUT);*/
-
         usr = (EditText) findViewById(R.id.username);
         pas = (EditText) findViewById(R.id.password);
     }

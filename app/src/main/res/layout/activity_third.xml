@@ -10,16 +10,16 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="500dp"
-        android:layout_height="400dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="496dp"
+        android:layout_marginBottom="592dp"
+        android:src="@mipmap/ic_launcher_revilt"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.442"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:src="@mipmap/ic_launcher_revilt_logo"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
     <View
         android:layout_width="410dp"

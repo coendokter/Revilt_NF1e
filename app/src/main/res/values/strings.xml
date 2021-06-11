@@ -4,6 +4,7 @@
     <string name="Overzicht">Overzicht pagina</string>
     <string name="Koppel">Koppel filtje:</string>
     <string name="Tafel">Aan tafel:</string>
+    <string name='title_activity_display_message'>My Message</string>
     <string-array name="Filtje_array">
         <item>1</item>
         <item>2</item>
