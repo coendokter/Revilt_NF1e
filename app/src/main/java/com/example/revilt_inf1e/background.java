@@ -43,7 +43,8 @@ public class background extends AsyncTask <String, Void,String> {
             context.startActivity(intent_name);
         }
         else {
-            dialog.setMessage("Wrong username/password");
+            dialog.setMessage("Verkeerd wachtwoord/username");
+
             dialog.show();
         }
     }
