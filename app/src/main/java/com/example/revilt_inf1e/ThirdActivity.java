@@ -9,6 +9,7 @@ import android.widget.Button;
 public class ThirdActivity extends Activity {
 
     private Button button2;
+    private Button btnLogOut;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,10 +22,26 @@ public class ThirdActivity extends Activity {
                 openActivity();
             }
         });
+
+        btnLogOut = (Button) findViewById(R.id.btnLogOut);
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout();
+            }
+        });
     }
 
     public void openActivity() {
         Intent intent = new Intent(this, SecondActivity.class);
         startActivity(intent);
     }
+
+
+    public void Logout(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+
 }
