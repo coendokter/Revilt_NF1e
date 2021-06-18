@@ -98,8 +98,11 @@ public class SecondActivity extends Activity{
                         JSONObject viltje = viltjes.getJSONObject(i);
                         int gewichtglas = viltje.getInt("Gewicht_glas");
                         int id = viltje.getInt("Vilt_id");
-                        String line = id + "Glas gewicht = " + gewichtglas;
-                        adapter.add(line);
+
+                        if(gewichtglas <= 10) {
+                            String line = "Glas: " +  id + " Is leeg. Glas gewicht = " + gewichtglas;
+                            adapter.add(line);
+                        }
                     }
                 }
                 else
