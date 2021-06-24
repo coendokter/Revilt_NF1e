@@ -5,6 +5,10 @@
     <string name="Koppel">Koppel filtje:</string>
     <string name="Tafel">Aan tafel:</string>
     <string name='title_activity_display_message'>My Message</string>
+    <string name="DynamicButton">DynamicButton</string>
+    <string name="show_text">X</string>
+    <string name="welcome_message">Item is verwijderd!</string>
+
     <string-array name="Filtje_array">
         <item>1</item>
         <item>2</item>

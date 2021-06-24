@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +28,7 @@ import java.io.InputStreamReader;
 import java.net.URI;
 
 
-public class SecondActivity extends Activity{
+public class SecondActivity extends Activity {
 
     ArrayAdapter<String> adapter;
     private Button button;
@@ -38,10 +40,29 @@ public class SecondActivity extends Activity{
         setContentView(R.layout.activity_second);
         ListView listView;
 
-        listView = (ListView)findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.listView);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         listView.setAdapter(adapter);
         new Connection().execute();
+
+        LinearLayout linearLayout = findViewById(R.id.rootContainer);
+
+        // Create Button Dynamically
+        Button btnShow = new Button(this);
+        btnShow.setText(R.string.show_text);
+        btnShow.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        btnShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(SecondActivity.this, R.string.welcome_message, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // Add Button to LinearLayout
+        if (linearLayout != null) {
+            linearLayout.addView(btnShow);
+        }
+
 
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -70,60 +91,78 @@ public class SecondActivity extends Activity{
 
                 String line = "";
 
-                while((line = reader.readLine()) != null){
+                while ((line = reader.readLine()) != null) {
                     stringBuffer.append(line);
                     break;
                 }
                 reader.close();
                 result = stringBuffer.toString();
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 return new String("There exception" + e.getMessage());
             }
-                return result;
+            return result;
         }
 
 
         @Override
-        protected void onPostExecute(String result){
+        protected void onPostExecute(String result) {
             //parsing json data here
             try {
                 JSONObject jsonResult = new JSONObject(result);
                 int success = jsonResult.getInt("success");
-                if(success == 1)
-                {
+                if (success == 1) {
                     JSONArray viltjes = jsonResult.getJSONArray("viltjes");
-                    for(int i=0; i<viltjes.length(); i++)
-                    {
+                    for (int i = 0; i < viltjes.length(); i++) {
                         JSONObject viltje = viltjes.getJSONObject(i);
                         int gewichtglas = viltje.getInt("Gewicht_glas");
                         int id = viltje.getInt("Vilt_id");
 
-                        if(gewichtglas <= 10) {
-                            String line = "Glas: " +  id + " Is leeg. Glas gewicht = " + gewichtglas;
+                        if (gewichtglas <= 10) {
+                            String line = "Glas: " + id + " Is leeg. Glas gewicht = " + gewichtglas;
                             adapter.add(line);
                         }
                     }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Er zijn geen bierfiltjes", Toast.LENGTH_LONG).show();
                 }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),"Er zijn geen bierfiltjes", Toast.LENGTH_LONG).show();
-                }
-            }
-            catch (JSONException e)
-            {
-                Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+            } catch (JSONException e) {
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
 
     }
 
-    public void openActivity(){
+    public void openActivity() {
         Intent intent = new Intent(this, ThirdActivity.class);
         startActivity(intent);
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
+
+        LinearLayout linearLayout = findViewById(R.id.rootContainer);
+
+        // Create Button Dynamically
+        Button btnShow = new Button(this);
+        btnShow.setText(R.string.show_text);
+        btnShow.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        btnShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(SecondActivity.this, R.string.welcome_message, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // Add Button to LinearLayout
+        if (linearLayout != null) {
+            linearLayout.addView(btnShow);
+        }
+
+
+    }
 }
 
 
