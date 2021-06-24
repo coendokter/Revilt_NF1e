@@ -6,6 +6,7 @@ import android.content.AsyncQueryHandler;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -22,6 +23,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -33,35 +35,24 @@ public class SecondActivity extends Activity {
     ArrayAdapter<String> adapter;
     private Button button;
     ListView listView;
+    TextView textview;
+    Handler handler;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         ListView listView;
+        textview = findViewById(R.id.refreshtext);
+        handler = new Handler();
+
 
         listView = (ListView) findViewById(R.id.listView);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         listView.setAdapter(adapter);
         new Connection().execute();
-
-        LinearLayout linearLayout = findViewById(R.id.rootContainer);
-
-        // Create Button Dynamically
-        Button btnShow = new Button(this);
-        btnShow.setText(R.string.show_text);
-        btnShow.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        btnShow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(SecondActivity.this, R.string.welcome_message, Toast.LENGTH_LONG).show();
-            }
-        });
-
-        // Add Button to LinearLayout
-        if (linearLayout != null) {
-            linearLayout.addView(btnShow);
-        }
 
 
         button = (Button) findViewById(R.id.button);
@@ -71,9 +62,15 @@ public class SecondActivity extends Activity {
                 openActivity();
             }
         });
+
+        doTheAutoRefresh();
     }
 
+
+
     class Connection extends AsyncTask<String, String, String> {
+
+        private final Handler handler = new Handler();
 
         @Override
         protected String doInBackground(String... strings) {
@@ -100,7 +97,9 @@ public class SecondActivity extends Activity {
             } catch (Exception e) {
                 return new String("There exception" + e.getMessage());
             }
+
             return result;
+
         }
 
 
@@ -110,6 +109,7 @@ public class SecondActivity extends Activity {
             try {
                 JSONObject jsonResult = new JSONObject(result);
                 int success = jsonResult.getInt("success");
+
                 if (success == 1) {
                     JSONArray viltjes = jsonResult.getJSONArray("viltjes");
                     for (int i = 0; i < viltjes.length(); i++) {
@@ -117,10 +117,16 @@ public class SecondActivity extends Activity {
                         int gewichtglas = viltje.getInt("Gewicht_glas");
                         int id = viltje.getInt("Vilt_id");
 
-                        if (gewichtglas <= 10) {
-                            String line = "Glas: " + id + " Is leeg. Glas gewicht = " + gewichtglas;
+
+                        if (gewichtglas >= 1 && gewichtglas <= 30) {
+                                String line = "Glas: " + id + " Is leeg. Glas gewicht = " + gewichtglas;
+                                adapter.add(line);
+
+                        } else if (gewichtglas == 0) {
+                            String line = "";
                             adapter.add(line);
                         }
+
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "Er zijn geen bierfiltjes", Toast.LENGTH_LONG).show();
@@ -132,37 +138,27 @@ public class SecondActivity extends Activity {
 
     }
 
+    private void doTheAutoRefresh() {
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                Intent intent = getIntent();
+                startActivity(intent);
+                finish();
+            }
+        }, 10000);
+    }
+    public void onPause() {
+        super.onPause();
+        handler.removeCallbacksAndMessages(null);
+    }
+
+
     public void openActivity() {
         Intent intent = new Intent(this, ThirdActivity.class);
         startActivity(intent);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-        LinearLayout linearLayout = findViewById(R.id.rootContainer);
-
-        // Create Button Dynamically
-        Button btnShow = new Button(this);
-        btnShow.setText(R.string.show_text);
-        btnShow.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        btnShow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(SecondActivity.this, R.string.welcome_message, Toast.LENGTH_LONG).show();
-            }
-        });
-
-        // Add Button to LinearLayout
-        if (linearLayout != null) {
-            linearLayout.addView(btnShow);
-        }
-
 
     }
+
 }
 
 
