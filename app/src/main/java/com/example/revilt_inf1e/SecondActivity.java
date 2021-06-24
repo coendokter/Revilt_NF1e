@@ -118,12 +118,12 @@ public class SecondActivity extends Activity {
                         int id = viltje.getInt("Vilt_id");
 
 
-                        if (gewichtglas >= 1 && gewichtglas <= 30) {
-                                String line = "Glas: " + id + " Is leeg. Glas gewicht = " + gewichtglas;
+                        if (gewichtglas >= 330000 && gewichtglas <= 364500) {
+                                String line = "Glas: " + id + " Is leeg.";
                                 adapter.add(line);
 
-                        } else if (gewichtglas == 0) {
-                            String line = "";
+                        } else {
+                            String line = "Er is geen glas leeg.";
                             adapter.add(line);
                         }
 
