@@ -1,17 +1,13 @@
 package com.example.revilt_inf1e;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.AsyncQueryHandler;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,14 +19,13 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URI;
 
 
-public class SecondActivity extends Activity {
+public class Home extends Activity {
 
     ArrayAdapter<String> adapter;
     private Button button;
@@ -43,7 +38,7 @@ public class SecondActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_home);
         ListView listView;
         textview = findViewById(R.id.refreshtext);
         handler = new Handler();
@@ -154,7 +149,7 @@ public class SecondActivity extends Activity {
 
 
     public void openActivity() {
-        Intent intent = new Intent(this, ThirdActivity.class);
+        Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
 
     }

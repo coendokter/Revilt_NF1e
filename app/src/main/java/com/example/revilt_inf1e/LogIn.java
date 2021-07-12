@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 
 
-public class MainActivity extends AppCompatActivity {
+public class LogIn extends AppCompatActivity {
 
     private static int SPLASH_SCREEN_TIME_OUT = 2000;
 
@@ -19,14 +19,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //this will bind your MainActivity.class file with activity_main.
+        //this will bind your activity_login.class file with activity_login.
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //This method is used so that your splash activity
         //can cover the entire screen.
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         usr = (EditText) findViewById(R.id.username);
         pas = (EditText) findViewById(R.id.password);

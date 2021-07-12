@@ -14,19 +14,19 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".LogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondActivity">
+        <activity android:name=".Home">
             <intent-filter>
                 <action android:name="android.intent.action.SECOND" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ThirdActivity">
+        <activity android:name=".Settings">
             <intent-filter>
                 <action android:name="android.intent.action.Third" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -35,7 +35,7 @@
         <activity
             android:name='com.example.revilt_inf1e.DisplayMessageActivity'
             android:label='@string/title_activity_display_message'
-            android:parentActivityName='com.example.revilt_inf1e.SecondActivity'
+            android:parentActivityName='com.example.revilt_inf1e.Home'
             >
             <meta-data
                 android:name='android.support.PARENT_ACTIVITY'

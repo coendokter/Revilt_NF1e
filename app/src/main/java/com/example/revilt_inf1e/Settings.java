@@ -6,14 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class ThirdActivity extends Activity {
+public class Settings extends Activity {
 
     private Button button2;
     private Button btnLogOut;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_third);
+        setContentView(R.layout.activity_settings);
 
         button2 = (Button) findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
@@ -33,13 +33,13 @@ public class ThirdActivity extends Activity {
     }
 
     public void openActivity() {
-        Intent intent = new Intent(this, SecondActivity.class);
+        Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 
 
     public void Logout(){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, LogIn.class);
         startActivity(intent);
     }
 

@@ -38,7 +38,7 @@ public class background extends AsyncTask <String, Void,String> {
         dialog.setMessage(s);
         if(s.contains("login successful"))
         {
-            Intent intent_name = new Intent(this.context,SecondActivity.class);
+            Intent intent_name = new Intent(this.context, Home.class);
             //intent_name.setClass(context.getApplicationContext(),);
             context.startActivity(intent_name);
         }
